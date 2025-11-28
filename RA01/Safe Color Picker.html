@@ -1,0 +1,25 @@
+<html>
+<body>
+<h1>Safe Color Picker</h1>
+<form action="https://jkorpela.fi/cgi-bin/echo.cgi">
+<label for="red">Red</label>
+<input type="range" id="red" name="red" list="safecolorstep"/><br>
+<label for="green">Green</label>
+<input type="range" id="green" name="green" list="safecolorstep"/><br>
+<label for="blue">Blue</label>
+<input type="range" id="blue" name="blue" list="safecolorstep"/><br>
+<input type="submit"/>
+
+
+
+<datalist id="safecolorstep">
+<option value="00"/>
+<option value="33"/>
+<option value="66"/>
+<option value="99"/>
+<option value="CC"/>
+<option value="FF"/>
+</datalist>
+</form>
+</body>
+</html>
