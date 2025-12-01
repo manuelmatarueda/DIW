@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App - i18next Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/i18next/i18next.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🌍 TravelLife</div>
+        <div class="lang-switcher">
+            <button onclick="changeLanguage('es')">Español 🇪🇸</button>
+            <button onclick="changeLanguage('en')">English 🇺🇸</button>
+            <button onclick="changeLanguage('ar')">Arabic 🇸🇦 (RTL Test)</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <h1 data-i18n="hero.title">Descubre tu próxima aventura</h1>
+            <p data-i18n="hero.subtitle">Los mejores destinos al mejor precio.</p>
+            <button class="cta-button" data-i18n="hero.cta">Reservar ahora</button>
+        </section>
+
+        <hr>
+
+        <section class="user-dashboard">
+            <h2 id="user-welcome"></h2> <div class="notification-card">
+                <span id="msg-count"></span> </div>
+            
+            <div class="controls">
+                <small><em>Simulación de número de mensajes:</em></small><br>
+                <button onclick="updateMsgCount(0)">0 Mensajes</button>
+                <button onclick="updateMsgCount(1)">1 Mensaje</button>
+                <button onclick="updateMsgCount(5)">5 Mensajes</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
