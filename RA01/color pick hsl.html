@@ -1,0 +1,113 @@
+<html>
+<head>
+<script>
+function refreshColor() {
+
+	_h = document.getElementById("hue").value;
+	_s = document.getElementById("saturation").value/100;
+	_l = document.getElementById("luminance").value/100;
+	
+	_hsl = "hsl("+_h+","+_s*100+"%,"+_l*100+"%)";
+	
+	_croma = (1 - Math.abs(2*_l - 1)) * _s;	
+	
+	_hprima = _h / 60;
+	_x = _croma * (1 - Math.abs((_hprima % 2) - 1));
+	
+	console.log(_croma + " " + _hprima + " " + _x);
+	
+	_r = 0;
+	_g = 0;
+	_b = 0;
+	
+	if(_hprima >= 0 && _hprima <= 1) {
+		_r = _croma;
+		_g = _x;
+	} else if(_hprima >= 1 && _hprima <= 2) {
+		_r = _x;
+		_g = _croma;
+	} if(_hprima >= 2 && _hprima <= 3) {
+		_g = _croma;
+		_b = _x;
+	} if(_hprima >= 3 && _hprima <= 4) {
+		_g = _x;
+		_b = _croma;
+	} if(_hprima >= 4 && _hprima <= 5) {
+		_r = _x;
+		_b = _croma;
+	} if(_hprima >= 5 && _hprima <= 6) {
+		_r = _croma;
+		_b = _x;
+	}
+	
+	console.log(_r + " " + _g + " " + _b);
+	
+	_m = _l - (_croma/2);
+	
+	_r = Math.round((_r + _m)*255);
+	_g = Math.round((_g + _m)*255);
+	_b = Math.round((_b + _m)*255);
+	
+	_hex = "#"+intToHex(_r)+intToHex(_g)+intToHex(_b);
+	_rgb = "rgb("+_r+","+_g+","+_b+")";
+	
+	document.getElementById("colorCodeRGB").innerHTML=_rgb;
+	document.getElementById("colorCodeHex").innerHTML=_hex;
+	document.getElementById("colorCodeHSL").innerHTML=_hsl;
+
+	document.getElementById("theColor").style.backgroundColor=_rgb;
+}
+
+function intToHex(i) {
+	hex = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+	
+	a=Math.floor(i/16);
+	b=i % 16;
+	
+	return ""+hex[a]+hex[b];
+}
+
+function hslToRed(h_, s_, l_) {
+
+	alert(h_ + " " + s_ + " " + l_);
+	red = s_ == 0 && h_ == 0 ? 0 : Math.round(l_ * 255 / 100);
+
+	return red;
+
+
+}
+
+function hslToGreen(h_, s_, l_) {
+
+	return "";
+
+
+}
+
+function hslToBlue(h_, s_, l_) {
+
+	return "";
+
+
+}
+</script>
+</head>
+<body>
+<h1>Color picker</h1>
+<form>
+<label for="hue">Hue</label>
+<input type="range" id="hue" name="hue" min="0" max="360" value="0" onchange="refreshColor();"/></br>
+<label for="saturation">Saturation</label>
+<input type="range" id="saturation" name="saturation" min="0" max="100" value="0" onchange="refreshColor();"/></br>
+<label for="luminance">Luminance</label>
+<input type="range" id="luminance" name="luminance" min="0" max="100" value="0" onchange="refreshColor();"/></br>
+
+<p id="colorCodeRGB">&nbsp;</p>
+<p id="colorCodeHex">&nbsp;</p>
+<p id="colorCodeHSL">&nbsp;</p>
+<div id="theColor" style="width:500px; height:500px; background-color:black">
+</div>
+
+</form>
+</body>
+</html>
